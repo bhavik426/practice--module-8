@@ -1,0 +1,118 @@
+<div class="d-flex">
+    <form [formGroup]="student" class="m-auto p-5 border border-dark">
+        <!-- <div>
+            <label for="id">ID : </label>
+            <input type="text" formControlName="id" class="w-100" required>
+
+            <ng-container *ngIf="gid?.invalid && (gid?.dirty || gid?.touched)">
+                <div class="text-danger" *ngIf="gid?.errors?.['required']">
+                    Id is Required
+                </div>
+            </ng-container>
+        </div> -->
+
+        <div>
+            <label for="name">Name : </label>
+            <input type="text" formControlName="name" class="w-100" required>
+            <ng-container *ngIf="gname?.invalid && (gname?.dirty || gname?.touched)">
+                <div class="text-danger" *ngIf="gname?.errors?.['required']">
+                    Name is Required
+                </div>
+                <div  class="text-danger" *ngIf="gname?.errors?.['minlength']">
+                    Name Should be at least 3 characters long
+                </div>
+            </ng-container>
+        </div>
+
+        <label class="mt-2" for="address">Address : </label>
+        <div formGroupName="address" class="p-3">
+            <div>
+                <label for="flat">Flat No : </label>
+                <input type="text" formControlName="flat" class="w-100" required>
+                <ng-container *ngIf="gflat?.invalid && (gflat?.dirty || gflat?.touched)">
+                    <div class="text-danger" *ngIf="gflat?.errors?.['required']">
+                        Flat No is Required
+                    </div>
+                </ng-container>
+            </div>
+            <div>
+                <label for="building">Building : </label>
+                <input type="text" formControlName="building" class="w-100" required>
+                <ng-container *ngIf="gbuilding?.invalid && (gbuilding?.dirty || gbuilding?.touched)">
+                    <div class="text-danger" *ngIf="gbuilding?.errors?.['required']">
+                        Building is Required
+                    </div>
+                    <div  class="text-danger" *ngIf="gbuilding?.errors?.['minlength']">
+                        Building Should be at least 4 characters long
+                    </div>
+                </ng-container>
+            </div>
+            <div>
+                <label for="city">City : </label>
+                <input type="text" formControlName="city" class="w-100" required>
+                <ng-container *ngIf="gcity?.invalid && (gcity?.dirty || gcity?.touched)">
+                    <div class="text-danger" *ngIf="gcity?.errors?.['required']">
+                        City is Required
+                    </div>
+                    <div  class="text-danger" *ngIf="gcity?.errors?.['minlength']">
+                        City Should be at least 3 characters long
+                    </div>
+                </ng-container>
+            </div>
+            <div>
+                <label for="state">State : </label>
+                <select  class="w-100" name="state" formControlName="state">
+                    <ng-container *ngFor="let item of statearr" required>
+                        <option value="{{item}}">{{item}}</option>
+                    </ng-container>
+                </select>
+                <ng-container *ngIf="gstate?.invalid && (gstate?.dirty || gstate?.touched)">
+                    <div class="text-danger" *ngIf="gstate?.errors?.['required']">
+                        State is Required
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div>
+            <label for="gender">Gender : </label>
+            <div class="d-felx">
+                <input type="radio" value="male" id="male" formControlName="gender" required class="form-check-input">
+                <label class="ms-2" for="male">Male</label>
+                
+                <input class="ms-2" type="radio" value="female" id="female" formControlName="gender" required class="form-check-input">
+                <label class="ms-2" for="female">Female</label>
+                
+                <input class="ms-2" type="radio" value="other" id="other" formControlName="gender" required class="form-check-input">
+                <label class="ms-2" for="other">Other</label>
+            </div>
+            <ng-container *ngIf="ggender?.invalid && (ggender?.dirty || ggender?.touched)">
+                <div class="text-danger" *ngIf="ggender?.errors?.['required']">
+                    Gender is Required
+                </div>
+            </ng-container>
+        </div>
+
+        <div >
+            <label for="hobbies">Hobbies : </label>
+            <ng-container *ngFor="let item of hobbies1;let i = index" formArrayName="hobbies">
+                <div>
+                    <input type="checkbox" value="{{item}}" [formControlName]="i">
+                    <label class="ms-2" for="{{item}}">{{item}}</label>
+                </div>
+            </ng-container>
+            <div>
+                <input type="text" class="w-100 mt-2" formControlName="hoby">
+                <input type="button" (click)="addhobbies()" class="mt-2 btn btn-secondary" value="+ Add Hobbies">
+            </div> 
+        </div>
+
+        <div>
+                <input type="button" (click)="patchname()" class="mt-2 w-100 btn btn-warning" value="Patch Name">
+        </div>
+
+        <div>
+            <input class="mt-2 btn btn-primary w-100" type="button" value="Submit" [disabled]="!student.valid" (click)="data()">
+        </div>
+    </form>
+</div>

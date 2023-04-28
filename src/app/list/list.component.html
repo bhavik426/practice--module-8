@@ -1,0 +1,5 @@
+
+    <a class="m-1 p-1" *ngFor="let item of student" [routerLink]="['student',item.id]">
+         {{item.name}}
+    </a>
+<router-outlet></router-outlet>

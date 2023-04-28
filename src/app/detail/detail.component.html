@@ -1,0 +1,11 @@
+<div *ngIf="data!=null">
+    <p> {{data.id}} </p>
+    <p> {{data.name}} </p>
+    <p> {{data.address.flat}} </p>
+    <p> {{data.address.building}} </p>
+    <p> {{data.address.city}} </p>
+    <p> {{data.address.state}} </p>
+    <ng-container *ngFor="let item of data.hobbies">
+        <p> {{item}} </p>
+    </ng-container>
+</div>
